@@ -36,6 +36,19 @@ $ ssh -p xxxxx seigot@xx.xx.xx.xx -i ~/.ssh/seigot_20220xxx
 $ sudo lsof -P -i:443
 ```
 
+```
+$ sudo lsof -P -i
+COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r  314 systemd-resolve   13u  IPv4  18206      0t0  TCP localhost:53 (LISTEN)
+jiaapi-mo  362          isucon    3u  IPv6  21400      0t0  TCP *:5000 (LISTEN)
+nginx      425            root    6u  IPv4  20603      0t0  TCP *:443 (LISTEN)
+mysqld     574           mysql   24u  IPv4  22719      0t0  TCP localhost:3306 (LISTEN)
+mysqld     574           mysql   46u  IPv4  49172      0t0  TCP localhost:3306->localhost:42170 (ESTABLISHED)
+sshd       578            root    3u  IPv4  22528      0t0  TCP *:30022 (LISTEN)
+isucondit  624          isucon    3u  IPv6  23060      0t0  TCP *:3000 (LISTEN)
+isucondit  624          isucon    8u  IPv4  49171      0t0  TCP localhost:42170->localhost:3306 (ESTABLISHED)
+```
+
 #### プロセスの確認
 
 [psコマンド　チートシート](https://qiita.com/Higemal/items/6a1f2b4b870d67f67e4e)
@@ -44,6 +57,14 @@ $ sudo lsof -P -i:443
 $ ps -aux
 ```
 
+```
+$ ps -ax | grep -Ei "nginx|mysqld|isucondit|jiaapi"
+    362 ?        Ssl    0:00 /usr/local/bin/jiaapi-mock
+    425 ?        Ss     0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+    429 ?        S      0:00 nginx: worker process
+    574 ?        Ssl    0:32 /usr/sbin/mysqld
+    624 ?        Ssl    0:01 /home/isucon/webapp/go/isucondition
+```
 
 
 ## 2.xxx
