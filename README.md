@@ -1,6 +1,10 @@
 ## isucon
 for isucon practice
 
+## other repository
+
+https://github.com/seigot/isucon_11  
+
 
 ## 参考
 
